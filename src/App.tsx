@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import Header from "./components/Header/Header";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  fetchAllCountries,
+  fetchCountriesByName,
+  fetchCountriesByRegion,
+  fetchCountryDetails,
+} from "./services/countries.services";
+import { useEffect } from "react";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#ffffff", // Change primary color
+    },
+    secondary: {
+      main: "#f50057", // Change secondary color
+    },
+    // You can also customize other colors like error, warning, info, etc.
+  },
+});
 
 function App() {
+  useEffect(() => {
+    fetchCountryDetails("india").then((data) => {
+      console.log("data", data);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header />
+      </div>
+    </ThemeProvider>
   );
 }
 
