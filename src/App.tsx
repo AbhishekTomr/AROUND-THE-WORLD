@@ -17,6 +17,8 @@ import FilterContext, { FilterContextProvider } from "./context/FilterContext";
 import { FETCH_COUNTRIES_TYPE, regionOptions } from "./constants";
 import { fetchCountryType } from "./types";
 import _ from "lodash";
+import { Routes, Route } from "react-router-dom";
+import CountryInsights from "./components/Countries/CountryInsights";
 
 // const theme = createTheme({
 //   palette: {

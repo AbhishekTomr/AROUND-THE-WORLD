@@ -4,15 +4,22 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { FilterContextProvider } from "./context/FilterContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CountryInsights from "./components/Countries/CountryInsights";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <FilterContextProvider>
-      <App />
-    </FilterContextProvider>
+    <BrowserRouter>
+      <FilterContextProvider>
+        <Routes>
+          <Route path="/" Component={App} />
+          <Route path="/insights/:countryCode" Component={CountryInsights} />
+        </Routes>
+      </FilterContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

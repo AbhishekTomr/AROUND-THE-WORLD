@@ -3,15 +3,22 @@ import { ICountryData } from "../../types";
 import _ from "lodash";
 import "./Countries.scss";
 import { Card } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   country: ICountryData;
 };
 
 const CountryCard = ({ country }: Props) => {
-  const { name, capital, flags, population, region } = country;
+  const { name, capital, flags, population, region, cioc } = country;
+  const navigate = useNavigate();
   return (
-    <Card className="country-card-wrap">
+    <Card
+      className="country-card-wrap"
+      onClick={() => {
+        navigate(`/insights/${cioc}`);
+      }}
+    >
       <div className="flag-img-wrap">
         <img src={flags.png} alt={flags.alt} />
       </div>
