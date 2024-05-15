@@ -34,7 +34,7 @@ function CountryInsights({}: Props) {
       }
       const data = await fetchCountryDetails(countryCode);
       setCountryData(data);
-      setIsLoading(false);
+      // setIsLoading(false);
     } catch (err) {
       console.error(err);
       setIsLoading(false);
@@ -62,11 +62,12 @@ function CountryInsights({}: Props) {
   };
 
   useEffect(() => {
+    if (_.isEmpty(countryData)) return;
     getBorderCountriesData(countryData?.borders || []);
   }, [countryData]);
 
   return (
-    <div className="App">
+    <div className="App nunito-sans-font">
       <Header />
       {isLoading ? (
         <Box

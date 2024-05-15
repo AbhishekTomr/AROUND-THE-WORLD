@@ -4,6 +4,7 @@ import { BorderCountries, CountryInsightsData } from "../../types";
 import { useNavigate } from "react-router-dom";
 import Btn from "../Common/Btn";
 import _ from "lodash";
+import BackLight from "../../assets/icons/BackLight.svg";
 
 type Props = {
   insightData: CountryInsightsData | null;
@@ -16,12 +17,14 @@ const InsightContainer = ({ insightData, borderCountries }: Props) => {
     <div className="insights-wrap">
       <div className="insights-header">
         <Btn
-          btnText={"<- Back"}
           customClass={""}
           onClick={() => {
             navigate("/");
           }}
-        />
+        >
+          <img src={BackLight} alt="back" />
+          Back
+        </Btn>
       </div>
       {_.isEmpty(insightData) ? (
         <h3>No Data Present Please go back or refresh the page</h3>
@@ -36,51 +39,79 @@ const InsightContainer = ({ insightData, borderCountries }: Props) => {
               <div className="details-column">
                 <span className="data">
                   <span className="label">Native Name: </span>
-                  <span className="value">{"abba jabba"}</span>
+                  <span className="value">
+                    {Object.values(insightData.name.nativeName)
+                      .map((item: any) => {
+                        return item.common;
+                      })
+                      .join(", ")}
+                  </span>
                 </span>
                 <span className="data">
                   <span className="label">Population: </span>
-                  <span className="value">{121313131}</span>
+                  <span className="value">{insightData.population}</span>
                 </span>
                 <span className="data">
                   <span className="label">Region: </span>
-                  <span className="value">{"Europe"}</span>
+                  <span className="value">{insightData.region}</span>
                 </span>
                 <span className="data">
                   <span className="label">SubRegion: </span>
-                  <span className="value">{"W.E"}</span>
+                  <span className="value">{insightData.subregion}</span>
                 </span>
                 <span className="data">
                   <span className="label">Capital: </span>
-                  <span className="value">{"Delhi"}</span>
+                  <span className="value">
+                    {_.isArray(insightData.capital)
+                      ? insightData.capital.join(", ")
+                      : insightData.capital}
+                  </span>
                 </span>
               </div>
               <div className="details-column">
                 <span className="data">
                   <span className="label">Top Level Domain: </span>
-                  <span className="value">{"Belgie"}</span>
+                  <span className="value">{insightData.tld.join(", ")}</span>
                 </span>
                 <span className="data">
                   <span className="label">Currencies: </span>
-                  <span className="value">{121313131}</span>
+                  <span className="value">
+                    {Object.values(insightData.currencies)
+                      .map((item: any) => {
+                        return item.name;
+                      })
+                      .join(", ")}
+                  </span>
                 </span>
                 <span className="data">
                   <span className="label">Languages: </span>
-                  <span className="value">{"Europe"}</span>
+                  <span className="value">
+                    {" "}
+                    {Object.values(insightData.languages)
+                      .map((item: any) => {
+                        return item;
+                      })
+                      .join(", ")}
+                  </span>
                 </span>
               </div>
             </div>
             <div className="border-countries-wrap data">
-              <span className="label">Border Countries: </span>
-              {borderCountries.map((countries: BorderCountries) => (
-                <Btn
-                  btnText={countries.name.official}
-                  customClass=""
-                  onClick={() => {
-                    navigate(`/insights/${countries.cioc}`);
-                  }}
-                />
-              ))}
+              {!_.isEmpty(borderCountries) && (
+                <span className="label">Border Countries: </span>
+              )}
+              <div className="neightbours">
+                {borderCountries.map((countries: BorderCountries) => (
+                  <Btn
+                    customClass=""
+                    onClick={() => {
+                      navigate(`/insights/${countries.cioc}`);
+                    }}
+                  >
+                    {countries.name.official}
+                  </Btn>
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -1,17 +1,17 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import "./Btn.scss";
 
 type Props = {
-  btnText: string;
   onClick: () => any;
   customClass: string;
+  children: React.ReactNode;
 };
 
-const Btn = ({ btnText, onClick, customClass }: Props) => {
+const Btn = ({ onClick, customClass, children }: Props) => {
   const btnClass = `btn ${customClass}`;
   return (
     <button onClick={onClick} className={btnClass}>
-      {btnText}
+      {children}
     </button>
   );
 };

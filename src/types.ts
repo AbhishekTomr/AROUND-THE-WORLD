@@ -15,6 +15,7 @@ export interface ICountryData {
   population: number;
   region: string;
   cioc: string;
+  cca2: string;
 }
 
 export interface ILableValue {

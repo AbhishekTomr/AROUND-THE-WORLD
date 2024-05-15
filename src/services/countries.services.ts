@@ -1,7 +1,7 @@
 export const fetchAllCountries = async () => {
   try {
     const response = await fetch(
-      `https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital,cioc`
+      `https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital,cioc,cca2`
     );
     if (!response.ok) {
       throw new Error("Something went wrong");
@@ -16,7 +16,7 @@ export const fetchAllCountries = async () => {
 export const fetchCountriesByName = async (searchTerm: string) => {
   try {
     const response = await fetch(
-      `https://restcountries.com/v3.1/name/${searchTerm}?fields=flags,name,population,region,capital,cioc`
+      `https://restcountries.com/v3.1/name/${searchTerm}?fields=flags,name,population,region,capital,cioc,cca2`
     );
     if (!response.ok) {
       throw new Error("Something went wrong");
@@ -31,7 +31,7 @@ export const fetchCountriesByName = async (searchTerm: string) => {
 export const fetchCountriesByRegion = async (region: string) => {
   try {
     const response = await fetch(
-      `https://restcountries.com/v3.1/region/${region}?fields=flags,name,population,region,capital,cioc`
+      `https://restcountries.com/v3.1/region/${region}?fields=flags,name,population,region,capital,cioc,cca2`
     );
     if (!response.ok) {
       throw new Error("Something went wrong");

@@ -10,13 +10,13 @@ type Props = {
 };
 
 const CountryCard = ({ country }: Props) => {
-  const { name, capital, flags, population, region, cioc } = country;
+  const { name, capital, flags, population, region, cioc, cca2 } = country;
   const navigate = useNavigate();
   return (
     <Card
       className="country-card-wrap"
       onClick={() => {
-        navigate(`/insights/${cioc}`);
+        navigate(`/insights/${cioc || cca2}`);
       }}
     >
       <div className="flag-img-wrap">
