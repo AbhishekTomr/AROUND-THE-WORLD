@@ -36,6 +36,7 @@ function App() {
   const [countries, setCountries] = useState<ICountryData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { region, country } = useContext(FilterContext);
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
 
   const fetchCounties = async (fetchType: fetchCountryType) => {
     try {
@@ -63,12 +64,26 @@ function App() {
   };
   useEffect(() => {
     fetchCounties(FETCH_COUNTRIES_TYPE.ALL);
+    setFirstLoad(false);
   }, []);
 
   useEffect(() => {
-    if (_.isEmpty(region)) return;
+    if (firstLoad) return;
+    if (_.isEmpty(region)) {
+      fetchCounties(FETCH_COUNTRIES_TYPE.ALL);
+      return;
+    }
     fetchCounties(FETCH_COUNTRIES_TYPE.REGION);
   }, [region]);
+
+  useEffect(() => {
+    if (firstLoad) return;
+    if (_.isEmpty(country)) {
+      fetchCounties(FETCH_COUNTRIES_TYPE.ALL);
+      return;
+    }
+    fetchCounties(FETCH_COUNTRIES_TYPE.COUNTRY);
+  }, [country]);
 
   return (
     // <ThemeProvider theme={theme}>
