@@ -1,6 +1,8 @@
 export const fetchAllCountries = async () => {
   try {
-    const response = await fetch(`https://restcountries.com/v3.1/all`);
+    const response = await fetch(
+      `https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital`
+    );
     if (!response.ok) {
       throw new Error("Something went wrong");
     }
