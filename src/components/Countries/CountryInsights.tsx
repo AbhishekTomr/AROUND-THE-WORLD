@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../Header/Header";
 import { fetchCountryDetails } from "../../services/countries.services";
@@ -10,6 +10,7 @@ import { CountryInsightsData } from "../../types";
 import InsightContainer from "./InsightContainer";
 import { getCountryNameViaCode } from "../../services/countries.services";
 import { BorderCountries } from "../../types";
+import FilterContext from "../../context/FilterContext";
 
 type Props = {};
 
@@ -25,6 +26,12 @@ function CountryInsights({}: Props) {
     null
   );
   const [borderCountries, setBorderCountries] = useState<BorderCountries[]>([]);
+  const { setCountry, setRegion } = useContext(FilterContext);
+
+  useEffect(() => {
+    setCountry("");
+    setRegion("");
+  }, []);
 
   const fetchCountryInsights = async () => {
     try {

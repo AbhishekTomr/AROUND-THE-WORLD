@@ -11,6 +11,7 @@ type Props = {};
 const SearchBar = (props: Props) => {
   const { country, setCountry } = useContext(FilterContext);
   let counter: any = null;
+
   const searchCountry = (searchTerm: string) => {
     if (counter) clearTimeout(counter);
     counter = setTimeout(() => {
