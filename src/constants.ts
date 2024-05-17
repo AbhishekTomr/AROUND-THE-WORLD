@@ -16,3 +16,8 @@ export enum FETCH_COUNTRIES_TYPE {
   REGION = "region",
   COUNTRY = "country",
 }
+
+export enum APP_THEME {
+  DARK = "dark",
+  LIGHT = "light",
+}

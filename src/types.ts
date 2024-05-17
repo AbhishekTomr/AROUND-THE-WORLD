@@ -1,4 +1,5 @@
 import { FETCH_COUNTRIES_TYPE } from "./constants";
+import { APP_THEME } from "./constants";
 
 export interface ICountryData {
   capital: string[] | string;
@@ -57,3 +58,5 @@ export interface BorderCountries {
   };
   cioc: string;
 }
+
+export type theme = APP_THEME.DARK | APP_THEME.LIGHT;
