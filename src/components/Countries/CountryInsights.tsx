@@ -11,6 +11,8 @@ import InsightContainer from "./InsightContainer";
 import { getCountryNameViaCode } from "../../services/countries.services";
 import { BorderCountries } from "../../types";
 import FilterContext from "../../context/FilterContext";
+import { themeContext } from "../../context/ThemeContext";
+import { APP_THEME } from "../../constants";
 
 type Props = {};
 
@@ -27,6 +29,10 @@ function CountryInsights({}: Props) {
   );
   const [borderCountries, setBorderCountries] = useState<BorderCountries[]>([]);
   const { setCountry, setRegion } = useContext(FilterContext);
+  const { theme } = useContext(themeContext);
+
+  const themeClass =
+    theme === APP_THEME.LIGHT ? APP_THEME.LIGHT : APP_THEME.DARK;
 
   useEffect(() => {
     setCountry("");
@@ -74,7 +80,7 @@ function CountryInsights({}: Props) {
   }, [countryData]);
 
   return (
-    <div className="App nunito-sans-font">
+    <div className={`App nunito-sans-font ${themeClass}`}>
       <Header />
       {isLoading ? (
         <Box

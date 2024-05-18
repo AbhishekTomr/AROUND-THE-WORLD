@@ -14,11 +14,12 @@ import Countries from "./components/Countries/Countries";
 import FilterSection from "./components/FilterSection/FilterSection";
 import { SelectChangeEvent } from "@mui/material";
 import FilterContext, { FilterContextProvider } from "./context/FilterContext";
-import { FETCH_COUNTRIES_TYPE, regionOptions } from "./constants";
+import { APP_THEME, FETCH_COUNTRIES_TYPE, regionOptions } from "./constants";
 import { fetchCountryType } from "./types";
 import _ from "lodash";
 import { Routes, Route } from "react-router-dom";
 import CountryInsights from "./components/Countries/CountryInsights";
+import { themeContext } from "./context/ThemeContext";
 
 // const theme = createTheme({
 //   palette: {
@@ -37,6 +38,10 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { region, country } = useContext(FilterContext);
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
+  const { theme } = useContext(themeContext);
+
+  const themeClass =
+    theme === APP_THEME.LIGHT ? APP_THEME.LIGHT : APP_THEME.DARK;
 
   const fetchCounties = async (fetchType: fetchCountryType) => {
     try {
@@ -86,8 +91,7 @@ function App() {
   }, [country]);
 
   return (
-    // <ThemeProvider theme={theme}>
-    <div className="App nunito-sans-font">
+    <div className={`App nunito-sans-font ${themeClass}`}>
       <Header />
       <FilterSection />
       {isLoading ? (

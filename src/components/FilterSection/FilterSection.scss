@@ -1,5 +1,11 @@
+@import "../../index.scss";
+
 .filter-section-wrap {
   margin: 2rem 1rem;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: $media-size-md) {
+    flex-flow: column nowrap !important;
+  }
 }

@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { FilterContextProvider } from "./context/FilterContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CountryInsights from "./components/Countries/CountryInsights";
+import ThemeProvider from "./context/ThemeContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,10 +15,12 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <FilterContextProvider>
-        <Routes>
-          <Route path="/" Component={App} />
-          <Route path="/insights/:countryCode" Component={CountryInsights} />
-        </Routes>
+        <ThemeProvider>
+          <Routes>
+            <Route path="/" Component={App} />
+            <Route path="/insights/:countryCode" Component={CountryInsights} />
+          </Routes>
+        </ThemeProvider>
       </FilterContextProvider>
     </BrowserRouter>
   </React.StrictMode>

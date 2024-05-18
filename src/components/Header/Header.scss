@@ -1,0 +1,9 @@
+@import "../../index.scss";
+
+.header-wrap {
+  background-color: $primary-color !important;
+  color: $text-color !important;
+  .transparent-borders {
+    box-shadow: none !important;
+  }
+}

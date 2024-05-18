@@ -1,0 +1,26 @@
+@import "../../index.scss";
+
+.dropdown-wrap {
+  background-color: $primary-color !important;
+  color: $sub-text-color !important;
+
+  @media screen and (max-width: $media-size-md) {
+    max-width: 250px !important;
+  }
+
+  @media screen and (max-width: $media-size-sm) {
+    max-width: none !important;
+    width: 100% !important;
+    width: fit-content;
+  }
+  .MuiSelect-select {
+    color: $sub-text-color !important;
+  }
+  .dropdown-label {
+    color: $sub-text-color !important;
+  }
+  .expand-icon {
+    height: 15px;
+    margin-right: $spacing-md;
+  }
+}

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Btn from "../Common/Btn";
 import _ from "lodash";
 import BackLight from "../../assets/icons/BackLight.svg";
+import BackDark from "../../assets/icons/BackDark.svg";
+import Image from "../Common/Image";
 
 type Props = {
   insightData: CountryInsightsData | null;
@@ -22,7 +24,11 @@ const InsightContainer = ({ insightData, borderCountries }: Props) => {
             navigate("/");
           }}
         >
-          <img src={BackLight} alt="back" />
+          <Image
+            lightThemeSrc={BackLight}
+            darkThemeSrc={BackDark}
+            alt="Go Back"
+          />
           Back
         </Btn>
       </div>
@@ -103,7 +109,7 @@ const InsightContainer = ({ insightData, borderCountries }: Props) => {
               <div className="neightbours">
                 {borderCountries.map((countries: BorderCountries) => (
                   <Btn
-                    customClass=""
+                    customClass="margin-10"
                     onClick={() => {
                       navigate(`/insights/${countries.cioc}`);
                     }}

@@ -1,0 +1,8 @@
+@import "./index.scss";
+
+.App {
+  background-color: $secondary-color;
+  color: $text-color !important;
+  min-height: 100vh;
+  margin: 0;
+}

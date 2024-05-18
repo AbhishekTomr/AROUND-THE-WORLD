@@ -1,3 +1,22 @@
+@import "../../index.scss";
+
 .search-bar {
-  width: 30%;
+  width: 40% !important;
+  min-width: 300px !important;
+  background-color: $primary-color;
+  margin-bottom: 50px !important;
+  input {
+    color: $text-color;
+  }
+  input::placeholder {
+    color: $sub-text-color;
+  }
+  @media screen and (max-width: $media-size-md) {
+    width: 400px !important;
+  }
+
+  @media screen and (max-width: $media-size-sm) {
+    width: 100% !important;
+    min-width: 200px !important;
+  }
 }

@@ -13,3 +13,31 @@
   font-style: normal;
   font-variation-settings: "wdth" 100, "YTLC" 500;
 }
+
+.App.light {
+  --primary-color: #ffffff;
+  --secondary-color: #f6f5f5;
+  --text-color: #111517;
+  --sub-text-color: #848484;
+}
+
+.App.dark {
+  --primary-color: #202c36;
+  --secondary-color: #2b3844;
+  --text-color: #ffffff;
+  --sub-text-color: #ffffff;
+}
+
+$font-size-lg: 24px;
+$font-size-md: 18px;
+$font-size-sm: 14px;
+$spacing-lg: 24px;
+$spacing-md: 16px;
+$spacing-sm: 10px;
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$text-color: var(--text-color);
+$sub-text-color: var(--sub-text-color);
+$media-size-lg: 1000px;
+$media-size-md: 700px;
+$media-size-sm: 375px;
