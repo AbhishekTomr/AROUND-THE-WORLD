@@ -44,11 +44,11 @@ const RegionDropdown = (props: Props) => {
             />
           )}
         >
-          <div className="expanded-wrap">
-            {regionOptions.map((region: ILableValue) => (
-              <MenuItem value={region.value}>{region.label}</MenuItem>
-            ))}
-          </div>
+          {regionOptions.map((region: ILableValue) => (
+            <MenuItem value={region.value} className="list-item">
+              {region.label}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

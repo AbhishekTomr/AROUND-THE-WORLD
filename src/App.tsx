@@ -1,7 +1,10 @@
 import "./App.scss";
 import React, { useContext } from "react";
 import Header from "./components/Header/Header";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  createTheme,
+  ThemeProvider as MUIThemeProvider,
+} from "@mui/material/styles";
 import {
   fetchAllCountries,
   fetchCountriesByName,
@@ -21,24 +24,47 @@ import { Routes, Route } from "react-router-dom";
 import CountryInsights from "./components/Countries/CountryInsights";
 import { themeContext } from "./context/ThemeContext";
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#ffffff", // Change primary color
-//     },
-//     secondary: {
-//       main: "#f50057", // Change secondary color
-//     },
-//     // You can also customize other colors like error, warning, info, etc.
-//   },
-// });
-
 function App() {
   const [countries, setCountries] = useState<ICountryData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { region, country } = useContext(FilterContext);
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
   const { theme } = useContext(themeContext);
+
+  const themePallet = createTheme({
+    palette: {
+      primary: {
+        main: theme === APP_THEME.LIGHT ? "#ffffff" : "#202c36",
+      },
+      secondary: {
+        main: theme === APP_THEME.LIGHT ? "#f6f5f5" : "#2b3844", // Change secondary color
+      },
+      // You can also customize other colors like error, warning, info, etc.
+    },
+    components: {
+      MuiSelect: {
+        styleOverrides: {
+          select: {
+            "&:focus": {
+              backgroundColor:
+                theme === APP_THEME.LIGHT ? "#ffffff" : "#202c36",
+            },
+          },
+        },
+        defaultProps: {
+          MenuProps: {
+            PaperProps: {
+              style: {
+                backgroundColor:
+                  theme === APP_THEME.LIGHT ? "#ffffff" : "#202c36", // Customize background color of the dropdown popup
+                color: theme === APP_THEME.LIGHT ? "#111517" : "#ffffff",
+              },
+            },
+          },
+        },
+      },
+    },
+  });
 
   const themeClass =
     theme === APP_THEME.LIGHT ? APP_THEME.LIGHT : APP_THEME.DARK;
@@ -91,26 +117,27 @@ function App() {
   }, [country]);
 
   return (
-    <div className={`App nunito-sans-font ${themeClass}`}>
-      <Header />
-      <FilterSection />
-      {isLoading ? (
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            height: "20vh",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <CircularProgress color="info" />
-        </Box>
-      ) : (
-        <Countries countries={countries} />
-      )}
-    </div>
-    // </ThemeProvider>
+    <MUIThemeProvider theme={themePallet}>
+      <div className={`App nunito-sans-font ${themeClass}`}>
+        <Header />
+        <FilterSection />
+        {isLoading ? (
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              height: "20vh",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress color="info" />
+          </Box>
+        ) : (
+          <Countries countries={countries} />
+        )}
+      </div>
+    </MUIThemeProvider>
   );
 }
 

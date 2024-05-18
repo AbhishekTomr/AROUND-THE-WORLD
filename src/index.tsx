@@ -14,14 +14,19 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <FilterContextProvider>
-        <ThemeProvider>
-          <Routes>
-            <Route path="/" Component={App} />
-            <Route path="/insights/:countryCode" Component={CountryInsights} />
-          </Routes>
-        </ThemeProvider>
-      </FilterContextProvider>
+      <div className="App">
+        <FilterContextProvider>
+          <ThemeProvider>
+            <Routes>
+              <Route path="/" Component={App} />
+              <Route
+                path="/insights/:countryCode"
+                Component={CountryInsights}
+              />
+            </Routes>
+          </ThemeProvider>
+        </FilterContextProvider>
+      </div>
     </BrowserRouter>
   </React.StrictMode>
 );
